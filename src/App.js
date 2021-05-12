@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect, useState } from 'react';
+import { Provider, useStore } from 'reto';
+import MainPage from './components/main-page';
+import { load, save } from './utils/save';
+import BakaPropsStore from './stores/BakaPropsStore';
 
 function App() {
+  const [isFirst, setIsFirst] = useState(false);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const bakaData = load();
+    const { isExist } = bakaData;
+    if (!isExist) {
+      setIsFirst(true);
+      save({
+        isExist: true,
+        hp: '100',
+        mp: '50',
+      });
+    }
+    setLoading(false);
+  }, []);
+
+  if (loading) {
+    return null;
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider of={BakaPropsStore}>
+      <MainPage
+        first={isFirst}
+      />
+    </Provider>
   );
 }
 
