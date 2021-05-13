@@ -31,7 +31,7 @@ const TextHistory = () => {
       <div className={classes.line}>
         {text3}
       </div>
-      <div className={classes.line}>
+      <div className={classes.newLine}>
         {text4}
       </div>
     </div>

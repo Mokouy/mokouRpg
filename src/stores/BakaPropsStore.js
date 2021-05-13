@@ -9,10 +9,11 @@ export default function BakaPropsStore() {
     attack: '10',
     defend: '1',
     name: 'Mokou',
+    defeat: [],
   };
 
   const [baka, setBaka] = useState(initBakaProps);
-  const [enemy, setEnemy] = useState(initBakaProps);
+  const [enemy, setEnemy] = useState({});
 
   const [text, setText] = useState('');
 
