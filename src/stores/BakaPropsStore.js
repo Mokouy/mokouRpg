@@ -8,7 +8,7 @@ export default function BakaPropsStore() {
     maxMp: '50',
     attack: '10',
     defend: '1',
-    name: '笨比思傲',
+    name: 'Mokou',
   };
 
   const [baka, setBaka] = useState(initBakaProps);
