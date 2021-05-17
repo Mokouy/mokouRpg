@@ -6,6 +6,7 @@ import BakaPropsStore from '../../stores/BakaPropsStore';
 import TextHistory from './TextHistory';
 import ActionArea from './ActionArea';
 import Enemy from './Enemy';
+import SelectModal from './SelectModal';
 import useStyles from './mainCss';
 
 const MainArea = () => {
@@ -19,6 +20,7 @@ const MainArea = () => {
         <TextHistory />
         <ActionArea />
       </div>
+      <SelectModal />
     </div>
   );
 };

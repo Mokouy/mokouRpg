@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { useStore } from 'reto';
-import Button from '@material-ui/core/Button';
-import Tooltip from '@material-ui/core/Tooltip';
 import BakaPropsStore from '../../stores/BakaPropsStore';
 import { delay } from '../../utils/common';
 import descriptionText from '../../utils/descriptionText';
-import { handleAttack } from '../../utils/calculate';
+import { handleAttack, turnEnd, getRandomArr } from '../../utils/calculate';
 import Enemys from '../enemys';
 import ActionButton from './ActionButton';
 import useStyles from './actionCss';
@@ -13,7 +11,7 @@ import useStyles from './actionCss';
 const ActionArea = () => {
   const classes = useStyles();
   const bakaPropsStore = useStore(BakaPropsStore);
-  const { getBakaProps, getEnemyProps, updateBakaProps, updateEnemyProps, setText, setEnemyProps } = bakaPropsStore;
+  const { getBakaProps, getEnemyProps, updateBakaProps, updateEnemyProps, setText, setEnemyProps, setModalData } = bakaPropsStore;
   const [loading, setLoading] = useState(false);
   const [actionStatus, setActionStatus] = useState('common');
 
@@ -22,7 +20,14 @@ const ActionArea = () => {
     baka.defeat.push(enemy.id);
     updateBakaProps(baka);
     setEnemyProps({});
+    const currentTrophys = getRandomArr(enemy.trophy, 3);
+    setModalData({ open: true, trophys: currentTrophys });
     setActionStatus('common');
+  };
+
+  const actionTurnEnd = (turnEndBakaProps) => {
+    const result = turnEnd(turnEndBakaProps);
+    updateBakaProps(result);
   };
 
   const handleClickAttack = async () => {
@@ -32,7 +37,12 @@ const ActionArea = () => {
     updateBakaProps(iProps);
     updateEnemyProps(tProps);
     await delay(233);
+    if (!(iProps.hp > 0)) {
+      console.log('战败');
+      return null;
+    }
     if (!(tProps.hp > 0)) {
+      actionTurnEnd(iProps);
       victory(iProps, tProps);
       setLoading(false);
       return null;
@@ -42,6 +52,17 @@ const ActionArea = () => {
     updateEnemyProps(newIProps);
     updateBakaProps(newTProps);
     await delay(233);
+    if (!(newTProps.hp > 0)) {
+      console.log('战败');
+      return null;
+    }
+    if (!(newIProps.hp > 0)) {
+      actionTurnEnd(newTProps);
+      victory(newTProps, newIProps);
+      setLoading(false);
+      return null;
+    }
+    actionTurnEnd(newTProps);
     setLoading(false);
   };
 
@@ -100,6 +121,12 @@ const ActionArea = () => {
           text="治愈"
           description={descriptionText.skill.heal}
           onClick={handleClickAttack}
+        />
+        <ActionButton
+          loading={loading}
+          text="返回"
+          description={descriptionText.back}
+          onClick={() => setActionStatus('action')}
         />
       </div>
     );

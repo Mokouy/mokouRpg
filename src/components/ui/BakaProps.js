@@ -9,7 +9,7 @@ const BakaProps = () => {
   const classes = useStyles();
   const bakaPropsStore = useStore(BakaPropsStore);
   const { getBakaProps } = bakaPropsStore;
-  const { hp, mp, maxHp, maxMp, attack, defend } = getBakaProps();
+  const { hp, mp, maxHp, maxMp, attack, defend, crit, critDamage } = getBakaProps();
 
   return (
     <div className={classes.root}>
@@ -34,6 +34,14 @@ const BakaProps = () => {
       <div className={classes.line}>
         <div className={classes.title}>防御力:</div>
         <div>{defend}</div>
+      </div>
+      <div className={classes.line}>
+        <div className={classes.title}>暴击率:</div>
+        <div>{NP.times(crit, 100)}%</div>
+      </div>
+      <div className={classes.line}>
+        <div className={classes.title}>暴击伤害:</div>
+        <div>{NP.times(critDamage, 100)}%</div>
       </div>
     </div>
   );

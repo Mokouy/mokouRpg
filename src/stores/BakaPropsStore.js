@@ -9,11 +9,16 @@ export default function BakaPropsStore() {
     attack: '10',
     defend: '1',
     name: 'Mokou',
+    turnHealPercent: '0',
+    turnHeal: '0',
+    crit: '0',
+    critDamage: '1.5',
     defeat: [],
   };
 
   const [baka, setBaka] = useState(initBakaProps);
   const [enemy, setEnemy] = useState({});
+  const [selectModalData, setSelectModalData] = useState({ open: false });
 
   const [text, setText] = useState('');
 
@@ -31,6 +36,10 @@ export default function BakaPropsStore() {
     setEnemy(newProps);
   };
 
+  const setModalData = (newProps = {}) => {
+    setSelectModalData(newProps);
+  };
+
   const updateEnemyProps = (newProps = {}) => {
     setEnemy({ ...enemy, ...newProps });
   };
@@ -38,6 +47,8 @@ export default function BakaPropsStore() {
   const getEnemyProps = () => enemy;
 
   const getHitorys = () => text;
+
+  const getModalData = () => selectModalData;
 
   return {
     getBakaProps,
@@ -48,5 +59,7 @@ export default function BakaPropsStore() {
     getEnemyProps,
     setEnemyProps,
     updateEnemyProps,
+    getModalData,
+    setModalData,
   };
 }

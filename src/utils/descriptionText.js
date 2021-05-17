@@ -9,6 +9,7 @@ const descriptionText = {
   skill: {
     heal: '消耗一些气力来进行简单的治愈',
   },
+  back: '返回上一级菜单',
 };
 
 export default descriptionText;

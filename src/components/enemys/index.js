@@ -1,3 +1,5 @@
+const commonTrophy = ['ultimateHeadset', 'ironBranch'];
+
 const wolf = {
   hp: '50',
   mp: '10',
@@ -7,6 +9,9 @@ const wolf = {
   defend: '0',
   name: '长得很像一条狼的狗',
   id: '1',
+  crit: '50',
+  critDamage: '1.5',
+  trophy: ['wolfHeat', 'sharpTeeth', ...commonTrophy],
 };
 
 const robber = {
@@ -16,8 +21,11 @@ const robber = {
   maxMp: '30',
   attack: '7',
   defend: '1',
+  crit: '0',
+  critDamage: '1.5',
   name: '不知道从那里冒出来的普通强盗',
   id: '2',
+  trophy: [],
 };
 
 const Enemys = [
