@@ -14,6 +14,7 @@ export default function BakaPropsStore() {
     crit: '0',
     critDamage: '1.5',
     defeat: [],
+    trophy: [],
   };
 
   const [baka, setBaka] = useState(initBakaProps);

@@ -10,6 +10,9 @@ const descriptionText = {
     heal: '消耗一些气力来进行简单的治愈',
   },
   back: '返回上一级菜单',
+  die: {
+    again: '死了啦！都是你害的啦！',
+  },
 };
 
 export default descriptionText;

@@ -10,7 +10,7 @@ const ActionButton = (props) => {
   return (
     <div className={classes.buttonWrapper}>
       <Tooltip title={description} placement="top">
-        <Button disabled={loading} onClick={onClick} variant="contained" color="secondary">{text}</Button>
+        <Button loading={loading} onClick={onClick} variant="contained" color="secondary">{text}</Button>
       </Tooltip>
     </div>
   );

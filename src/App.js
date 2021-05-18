@@ -9,16 +9,16 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const bakaData = load();
-    const { isExist } = bakaData;
-    if (!isExist) {
-      setIsFirst(true);
-      save({
-        isExist: true,
-        hp: '100',
-        mp: '50',
-      });
-    }
+    // const bakaData = load();
+    // const { isExist } = bakaData;
+    // if (!isExist) {
+    //   setIsFirst(true);
+    //   save({
+    //     isExist: true,
+    //     hp: '100',
+    //     mp: '50',
+    //   });
+    // }
     setLoading(false);
   }, []);
 

@@ -37,7 +37,7 @@ const BakaProps = () => {
       </div>
       <div className={classes.line}>
         <div className={classes.title}>暴击率:</div>
-        <div>{NP.times(crit, 100)}%</div>
+        <div>{NP.strip(crit)}%</div>
       </div>
       <div className={classes.line}>
         <div className={classes.title}>暴击伤害:</div>

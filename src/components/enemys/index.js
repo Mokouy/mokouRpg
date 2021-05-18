@@ -9,9 +9,11 @@ const wolf = {
   defend: '0',
   name: '长得很像一条狼的狗',
   id: '1',
-  crit: '50',
+  crit: '20',
   critDamage: '1.5',
   trophy: ['wolfHeat', 'sharpTeeth', ...commonTrophy],
+  skill: ['wolfBite'],
+  skillProbability: 20,
 };
 
 const robber = {
@@ -25,7 +27,9 @@ const robber = {
   critDamage: '1.5',
   name: '不知道从那里冒出来的普通强盗',
   id: '2',
-  trophy: [],
+  trophy: ['goldChain', ...commonTrophy],
+  skill: [],
+  skillProbability: 20,
 };
 
 const Enemys = [
